@@ -7,6 +7,10 @@ const PORT = 3005;
 
 const app = express();
 
+// Chamando a rota
+var rotas = require('./rotas');
+app.use(rotas)
+
 // Criando rotas
 // app.get('/', (req, res) => {
 //   res.send('Ola Mundo')

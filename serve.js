@@ -8,8 +8,11 @@ const PORT = 3005;
 const app = express();
 
 // Chamando a rota
-var rotas = require('./rotas');
-app.use(rotas)
+// const rotas = require('./rotas/rotas');
+// app.use(rotas)
+
+const rotas2 = require('./rotas/rotas2')
+app.use(rotas2)
 
 // Criando rotas
 // app.get('/', (req, res) => {
@@ -23,9 +26,9 @@ app.use(rotas)
 // Caminhos de Rota
 
 // corresponde a rota raiz (/)
-app.get('/', function (req, res) {
-  res.send('root');
-});
+// app.get('/', function (req, res) {
+//   res.send('root');
+// });
 
 app.get('/about', (req, res) => {
   res.send('about');
@@ -113,14 +116,26 @@ app.route('/book')
   });
 
 
-
-
+// Teste de rota com if
+const servidor = http.createServer((req,res) => {
+  res.writeHead(200, {'Content-Type':'text/html'})
+  if(req.url == '/if1') {
+    // res.write('entrou no if 1')
+    res.send('entrou no if 1')
+  }else if(req.url == 'if2'){
+    res.write('entrou no if 2')
+  }else{
+    res.send('entrou no else')
+  }
+})
 
 
 // Fazendo o servidor escutar
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`)
 })
+
+servidor.listen(4040)
 
 
 
